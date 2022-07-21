@@ -1,0 +1,6 @@
+[submodule "importers/lightning"]
+	path = importers/lightning
+	url = git@github.com:bravo-team-kiss/lightning.git
+[submodule "importers/rawinsonde"]
+	path = importers/rawinsonde
+	url = git@github.com:bravo-team-kiss/rawinsonde.git
