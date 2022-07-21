@@ -17,7 +17,7 @@ build {
   sources = ["sources.virtualbox-ovf.team-kiss-devtools"]
   provisioner "shell" {
     inline = [
-      "apk add --no-cache tmux vim emacs nano curl bash",
+      "apk add --no-cache tmux vim emacs nano curl bash git jq yq",
       "apk add --no-cache g++ gfortran make musl-dev linux-headers",
       "apk add --no-cache python3 nodejs"
     ]
