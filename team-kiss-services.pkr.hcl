@@ -38,7 +38,8 @@ build {
       "mount -a",
       "cd /var/team-kiss/services",
       "docker-compose up -d",
-      "echo '127.0.0.1 registry' >> /etc/hosts"
+      "echo '127.0.0.1 registry' >> /etc/hosts",
+      "echo '127.0.0.1 influx' >> /etc/hosts"
     ]
   }
 }
