@@ -1,28 +1,19 @@
-packer {
-  required_plugins {
-    docker = {
-      version = ">= 0.0.7"
-      source  = "github.com/hashicorp/docker"
-    }
-    virtualbox = {
-      version = ">= 0.0.1"
-      source  = "github.com/hashicorp/virtualbox"
-    }
-  }
-}
 
-source "virtualbox-iso" "team-kiss-app" {
-  vm_name              = "Team_Kiss_Base"
-  guest_os_type        = "Other_Linux"
+source "virtualbox-iso" "team-kiss-base" {
+  vm_name = "Team_Kiss_Base"
+  guest_os_type = "Other_Linux"
   guest_additions_mode = "disable"
-  cpus                 = "2"
-  memory               = "4096"
-  iso_url              = "https://dl-cdn.alpinelinux.org/alpine/v3.16/releases/x86_64/alpine-virt-3.16.1-x86_64.iso"
-  iso_checksum         = "sha256:ce507d7f8a0da796339b86705a539d0d9eef5f19eebb1840185ce64be65e7e07"
-  ssh_username         = "root"
-  ssh_password         = "password"
-  nic_type             = "virtio"
-  shutdown_command     = "poweroff"
+  cpus = "2"
+  memory = "4096"
+  iso_url = "https://dl-cdn.alpinelinux.org/alpine/v3.16/releases/x86_64/alpine-virt-3.16.1-x86_64.iso"
+  iso_checksum = "sha256:ce507d7f8a0da796339b86705a539d0d9eef5f19eebb1840185ce64be65e7e07"
+  ssh_username = "root"
+  ssh_password = "password"
+  nic_type = "virtio"
+  shutdown_command = "poweroff"
+  vboxmanage = [
+    [ "modifyvm", "{{.Name}}", "--natpf1", "guest_ssh,tcp,,2022,,22" ]
+  ]
   boot_command = [
     # login as root
     "root<enter><wait>",
@@ -52,9 +43,10 @@ source "virtualbox-iso" "team-kiss-app" {
   http_directory = "packer-inputs"
 
   format = "ova"
+  keep_registered = true
 }
 
 build {
-  name    = "team_kiss_base"
-  sources = ["sources.virtualbox-iso.team-kiss-app"]
+  name = "team_kiss_base"
+  sources = ["sources.virtualbox-iso.team-kiss-base"]
 }
