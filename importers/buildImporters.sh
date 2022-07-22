@@ -1,7 +1,7 @@
 #!/bin/bash
 
 pushd .
-cd lightning/parser
+cd lightning/parse
 docker build . -f docker/Dockerfile -t registry:8087/lightning
 docker push registry:8087/lightning
 popd
